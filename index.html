@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WanderWise — Travel Smart • Stay Risk-Free</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET & VARIABLES ─────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#fdf6e3;
+  --cream2:#f5ead0;
+  --green:#2d6a4f;
+  --green-light:#52b788;
+  --green-btn:#3a7d5c;
+  --orange:#e07c24;
+  --orange-light:#f4a261;
+  --red:#c0392b;
+  --red-bg:#fdecea;
+  --yellow:#f39c12;
+  --yellow-bg:#fff8e1;
+  --blue:#1a4e7a;
+  --text:#1a1a1a;
+  --text2:#555;
+  --border:#ddd;
+  --shadow:0 4px 20px rgba(0,0,0,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);}
+
+/* ─── NAVBAR ────────────────────────────────────────────────── */
+nav{
+  background:var(--cream);
+  padding:0 40px;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;top:0;z-index:1000;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:48px;height:48px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;}
+.logo-text h1{font-family:'Playfair Display',serif;font-size:22px;color:var(--green);line-height:1;}
+.logo-text span{font-size:11px;color:var(--text2);letter-spacing:0.5px;}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.nav-links a{
+  text-decoration:none;color:var(--text);font-size:14px;font-weight:500;
+  padding:8px 16px;border-radius:8px;display:flex;align-items:center;gap:6px;
+  transition:background 0.2s;cursor:pointer;
+}
+.nav-links a:hover{background:rgba(0,0,0,0.05);}
+.nav-links a.active{background:var(--green);color:#fff;}
+.nav-links a.active:hover{background:var(--green-btn);}
+.btn-signin{
+  background:var(--green);color:#fff!important;
+  padding:10px 20px!important;border-radius:8px;
+  font-weight:600!important;
+}
+.btn-signin:hover{background:var(--green-btn)!important;}
+
+/* ─── PAGES ─────────────────────────────────────────────────── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ─── HERO ──────────────────────────────────────────────────── */
+.hero{
+  position:relative;height:420px;overflow:hidden;
+  background:linear-gradient(135deg,#1a2a1a 0%,#2d4a2d 50%,#4a3010 100%);
+}
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%25" stop-color="%23ff6b35"/><stop offset="40%25" stop-color="%23f7931e"/><stop offset="100%25" stop-color="%231a3020"/></linearGradient></defs><rect width="1400" height="420" fill="url(%23sky)"/><rect y="280" width="1400" height="140" fill="%231a2a1a"/><rect x="600" y="120" width="200" height="160" rx="5" fill="%232d4020" opacity="0.9"/><ellipse cx="700" cy="118" rx="40" ry="30" fill="%232d4020"/></svg>') center/cover;
+}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.1) 60%);}
+.hero-content{position:relative;z-index:2;padding:60px 60px;height:100%;display:flex;flex-direction:column;justify-content:center;}
+.hero-content h2{font-family:'Playfair Display',serif;font-size:42px;color:#fff;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.4);}
+.hero-content p{color:rgba(255,255,255,0.85);font-size:16px;margin:8px 0 28px;}
+.hero-btns{display:flex;gap:14px;}
+.btn-primary{background:var(--green);color:#fff;border:none;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.btn-primary:hover{background:var(--green-btn);}
+.btn-outline{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.7);padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(6px);transition:background 0.2s;}
+.btn-outline:hover{background:rgba(255,255,255,0.25);}
+.risk-badge{
+  position:absolute;top:50%;right:60px;transform:translateY(-50%);
+  background:rgba(255,255,255,0.95);border-radius:12px;padding:16px 20px;
+  max-width:280px;box-shadow:var(--shadow);
+}
+.risk-badge-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.risk-badge-header .icon{font-size:20px;}
+.risk-badge-header strong{color:var(--red);font-size:14px;}
+.risk-badge p{color:var(--text2);font-size:13px;line-height:1.5;}
+
+/* ─── SECTION DECORATIONS ────────────────────────────────────── */
+.section-bg{
+  background:var(--cream);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='5' cy='5' r='2' fill='%23d4a053' opacity='0.15'/%3E%3C/svg%3E");
+  padding:60px 40px;
+}
+
+/* ─── FEATURE CARDS ─────────────────────────────────────────── */
+.features-section{padding:50px 40px;background:var(--cream);}
+.features-section h2{text-align:center;font-family:'Playfair Display',serif;font-size:28px;margin-bottom:30px;color:var(--text);}
+.feature-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.feature-card{
+  border-radius:16px;padding:30px;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s;min-height:160px;
+}
+.feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.feature-card.green{background:linear-gradient(135deg,#d8f3dc 0%,#b7e4c7 100%);}
+.feature-card.orange{background:linear-gradient(135deg,#fde8d0 0%,#fbd5b0 100%);}
+.feature-card.purple{background:linear-gradient(135deg,#e8e0f5 0%,#d8ccf0 100%);}
+.feature-card .fc-bg{
+  position:absolute;right:-20px;bottom:-20px;width:130px;height:130px;
+  background:rgba(255,255,255,0.3);border-radius:50%;
+}
+.fc-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;}
+.fc-icon.green{background:var(--green);color:#fff;}
+.fc-icon.orange{background:var(--orange);color:#fff;}
+.fc-icon.red{background:var(--red);color:#fff;}
+.feature-card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.feature-card p{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:14px;}
+.feature-card a{font-size:13px;font-weight:600;color:inherit;text-decoration:none;}
+.feature-card.green a{color:var(--green);}
+.feature-card.orange a{color:var(--orange);}
+.feature-card.purple a{color:#6c3ec6;}
+
+/* ─── DASHBOARD WIDGETS ─────────────────────────────────────── */
+.dashboard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding:0 40px 60px;}
+.widget{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.widget-header{padding:16px 20px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;color:#fff;}
+.widget-header.green{background:var(--green);}
+.widget-header.orange{background:var(--orange);}
+.widget-header.red{background:var(--red);}
+.widget-body{padding:20px;}
+.widget-input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:10px;outline:none;transition:border 0.2s;}
+.widget-input:focus{border-color:var(--green);}
+.btn-get{background:var(--green);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;}
+.btn-get:hover{background:var(--green-btn);}
+.btn-check{width:100%;background:var(--orange);color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
+.btn-check:hover{background:#c9682a;}
+.row-input{display:flex;gap:8px;}
+.location-result{background:#f0f9f4;border-radius:10px;padding:14px;margin-top:10px;display:none;}
+.location-result.show{display:block;}
+.location-result h4{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--green);}
+.location-result ul{list-style:none;}
+.location-result ul li{font-size:13px;color:var(--text2);padding:3px 0;}
+.location-result ul li::before{content:"• ";color:var(--green);}
+.risk-note{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:13px;display:flex;align-items:flex-start;gap:8px;}
+.risk-note.high{background:#fdecea;color:var(--red);}
+.risk-note.moderate{background:#fff8e1;color:#b7800a;}
+.risk-note.low{background:#e8f5e9;color:#2e7d32;}
+.price-result{margin-top:12px;display:none;}
+.price-result.show{display:block;}
+.price-label{font-size:13px;color:var(--text2);}
+.price-val{font-size:22px;font-weight:700;color:var(--orange);}
+.price-note{font-size:12px;color:var(--text2);margin-top:4px;}
+.incident-item{padding:12px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.incident-item:last-child{border-bottom:none;}
+.incident-title{font-size:14px;font-weight:600;}
+.incident-loc{font-size:12px;color:var(--text2);margin-top:2px;}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.badge.high{background:#fdecea;color:var(--red);}
+.badge.medium{background:#fff8e1;color:#b7800a;}
+.badge.low{background:#e8f5e9;color:#2e7d32;}
+.view-all{color:var(--red);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;}
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+footer{background:var(--green);color:#fff;text-align:center;padding:16px;font-size:14px;}
+
+/* ─── PAGE HEADER ────────────────────────────────────────────── */
+.page-hero{
+  background:linear-gradient(135deg,var(--green) 0%,#1a4a32 100%);
+  padding:50px 40px;color:#fff;
+}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:8px;}
+.page-hero p{opacity:0.85;font-size:15px;}
+
+/* ─── FULL LOCATION PAGE ────────────────────────────────────── */
+.content-section{padding:40px;}
+.search-bar-big{
+  display:flex;gap:12px;margin-bottom:32px;
+}
+.search-bar-big input{
+  flex:1;padding:14px 18px;border:2px solid var(--border);border-radius:10px;
+  font-size:15px;font-family:'Inter',sans-serif;outline:none;
+}
+.search-bar-big input:focus{border-color:var(--green);}
+.search-bar-big button{
+  background:var(--green);color:#fff;border:none;padding:14px 28px;
+  border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;
+}
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.info-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.info-card h3{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.info-row{display:flex;padding:10px 0;border-bottom:1px solid #f5f5f5;font-size:14px;}
+.info-row:last-child{border-bottom:none;}
+.info-row .label{color:var(--text2);width:160px;flex-shrink:0;}
+.info-row .val{font-weight:500;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.tag{background:#f0f9f4;color:var(--green);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;}
+.popular-locations{margin-top:32px;}
+.popular-locations h3{font-size:20px;font-weight:700;margin-bottom:20px;}
+.loc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.loc-chip{
+  background:#fff;border-radius:12px;padding:16px;cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s;
+  text-align:center;
+}
+.loc-chip:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+.loc-chip .risk{font-size:11px;font-weight:700;margin-top:6px;padding:3px 10px;border-radius:20px;display:inline-block;}
+.loc-chip .name{font-size:14px;font-weight:600;margin-top:6px;}
+.loc-chip .emoji{font-size:28px;}
+
+/* ─── PRICE PAGE ─────────────────────────────────────────────── */
+.price-container{padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.price-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.price-card h3{font-size:18px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.price-card label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;}
+.price-card input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;margin-bottom:14px;font-family:'Inter',sans-serif;outline:none;}
+.price-card input:focus{border-color:var(--orange);}
+.price-card .btn-full{width:100%;padding:13px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px;}
+.price-card .btn-full:hover{background:#c9682a;}
+.result-box{margin-top:20px;background:#fff9f0;border:1.5px solid #fde8c8;border-radius:12px;padding:18px;display:none;}
+.result-box.show{display:block;}
+.result-box .main-price{font-size:26px;font-weight:700;color:var(--orange);}
+.result-box .sub{font-size:13px;color:var(--text2);margin-top:4px;}
+.tip-box{background:#e8f5e9;border-radius:10px;padding:14px;margin-top:14px;font-size:13px;color:#2e7d32;display:flex;gap:8px;}
+.fare-table{width:100%;border-collapse:collapse;margin-top:16px;}
+.fare-table th{text-align:left;padding:10px 14px;background:#f5f5f5;font-size:13px;color:var(--text2);}
+.fare-table td{padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:14px;}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;}
+.service-btn{padding:12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;transition:all 0.2s;text-align:center;}
+.service-btn:hover,.service-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+/* ─── RISK PAGE ─────────────────────────────────────────────── */
+.risk-container{padding:40px;}
+.filter-bar{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+.filter-btn{padding:8px 18px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;}
+.filter-btn.active.all{background:#333;color:#fff;border-color:#333;}
+.filter-btn.active.high{background:var(--red);color:#fff;border-color:var(--red);}
+.filter-btn.active.medium{background:var(--yellow);color:#fff;border-color:var(--yellow);}
+.filter-btn.active.low{background:var(--green);color:#fff;border-color:var(--green);}
+.incidents-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.incident-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.07);border-left:4px solid #ddd;}
+.incident-card.high{border-left-color:var(--red);}
+.incident-card.medium{border-left-color:var(--yellow);}
+.incident-card.low{border-left-color:var(--green);}
+.incident-card .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.incident-card h4{font-size:15px;font-weight:700;}
+.incident-card .meta{font-size:12px;color:var(--text2);margin-top:4px;}
+.incident-card p{font-size:13px;color:var(--text2);line-height:1.6;margin-top:10px;}
+.incident-card .footer{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--text2);}
+.report-section{background:#fff;border-radius:16px;padding:28px;margin-top:32px;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.report-section h3{font-size:20px;font-weight:700;margin-bottom:20px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:13px;font-weight:600;color:var(--text2);}
+.form-group input,.form-group select,.form-group textarea{
+  padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;
+  font-size:14px;font-family:'Inter',sans-serif;outline:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red);}
+.form-group textarea{resize:vertical;min-height:80px;}
+.form-group.full{grid-column:1/-1;}
+.submit-btn{background:var(--red);color:#fff;border:none;padding:13px 30px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px;}
+.submit-btn:hover{background:#a93226;}
+.success-msg{background:#e8f5e9;color:#2e7d32;padding:14px;border-radius:8px;font-size:14px;font-weight:500;margin-top:12px;display:none;}
+.success-msg.show{display:block;}
+
+/* ─── ABOUT PAGE ─────────────────────────────────────────────── */
+.about-container{padding:40px;max-width:800px;margin:0 auto;}
+.about-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:24px;}
+.about-card h3{font-size:20px;font-weight:700;margin-bottom:16px;color:var(--green);}
+.about-card p{font-size:15px;line-height:1.8;color:var(--text2);}
+.feature-list{list-style:none;margin-top:16px;}
+.feature-list li{padding:10px 0;border-bottom:1px solid #f5f5f5;font-size:14px;display:flex;align-items:center;gap:10px;}
+.feature-list li::before{content:"✓";background:var(--green);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.team-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px;}
+.team-card{text-align:center;background:#f9f9f9;border-radius:12px;padding:20px;}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:28px;}
+.team-card h4{font-size:15px;font-weight:700;}
+.team-card span{font-size:13px;color:var(--text2);}
+
+/* ─── AUTH MODAL ─────────────────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;
+  display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.modal-overlay.show{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+.modal h2{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:6px;}
+.modal p{color:var(--text2);font-size:14px;margin-bottom:24px;}
+.modal-tabs{display:flex;gap:0;background:#f5f5f5;border-radius:8px;padding:4px;margin-bottom:24px;}
+.modal-tab{flex:1;padding:10px;text-align:center;border-radius:6px;cursor:pointer;font-size:14px;font-weight:500;transition:background 0.2s;}
+.modal-tab.active{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);font-weight:700;}
+.modal input{
+  width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:8px;
+  font-size:14px;margin-bottom:14px;font-family:'Inter',sans-serif;outline:none;
+}
+.modal input:focus{border-color:var(--green);}
+.modal .btn-modal{
+  width:100%;padding:14px;background:var(--green);color:#fff;
+  border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;
+}
+.modal .btn-modal:hover{background:var(--green-btn);}
+.modal .close-btn{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text2);}
+.modal-inner{position:relative;}
+
+/* ─── UTILITIES ──────────────────────────────────────────────── */
+.hidden{display:none!important;}
+.mt8{margin-top:8px;}
+.price-tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;}
+.price-tier{background:#fff9f0;border-radius:10px;padding:12px;text-align:center;}
+.price-tier .tier-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;}
+.price-tier .tier-val{font-size:14px;font-weight:700;color:var(--orange);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <a class="logo" href="#" onclick="showPage('home')">
+    <div class="logo-icon">🧭</div>
+    <div class="logo-text">
+      <h1>Wander<span style="color:#e07c24">Wise</span></h1>
+      <span>Travel Smart • Stay Risk-Free</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a id="nav-home" class="active" onclick="showPage('home')">🏠 Home</a>
+    <a id="nav-location" onclick="showPage('location')">📍 Location Info</a>
+    <a id="nav-price" onclick="showPage('price')">₹ Price Checker</a>
+    <a id="nav-risk" onclick="showPage('risk')">⚠️ Risk Incidents</a>
+    <a id="nav-about" onclick="showPage('about')">ℹ️ About</a>
+    <a class="btn-signin" onclick="openAuth()">Sign In / Sign Up</a>
+  </div>
+</nav>
+
+<!-- ─── HOME PAGE ─── -->
+<div id="page-home" class="page active">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2>Explore Delhi</h2>
+      <p>Travel Smart, Stay Risk-Free</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('location')">Get Location Info</button>
+        <button class="btn-outline" onclick="showPage('risk')">View Risk Map</button>
+      </div>
+    </div>
+    <div class="risk-badge">
+      <div class="risk-badge-header">
+        <span class="icon">⚠️</span>
+        <strong>High Risk Activity</strong>
+      </div>
+      <p>Multiple taxi fare reports at Connaught Place this evening.</p>
+    </div>
+  </div>
+
+  <!-- Feature Cards -->
+  <div class="features-section">
+    <h2>Explore Features</h2>
+    <div class="feature-cards">
+      <div class="feature-card green" onclick="showPage('location')">
+        <div class="fc-icon green">📍</div>
+        <div class="fc-bg"></div>
+        <h3>Location Information</h3>
+        <p>Get details, hotspots, transport & risk insights for any Delhi location.</p>
+        <a href="#">Check Location →</a>
+      </div>
+      <div class="feature-card orange" onclick="showPage('price')">
+        <div class="fc-icon orange">₹</div>
+        <div class="fc-bg"></div>
+        <h3>Price Checker</h3>
+        <p>Compare average fares & prices to avoid overcharging.</p>
+        <a href="#">Check Prices →</a>
+      </div>
+      <div class="feature-card purple" onclick="showPage('risk')">
+        <div class="fc-icon red">🚨</div>
+        <div class="fc-bg"></div>
+        <h3>Risk Incident Map</h3>
+        <p>See real reported risks on map with time, type & risk level.</p>
+        <a href="#">Open Risk Map →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Widgets -->
+  <div class="dashboard">
+    <!-- Location Widget -->
+    <div class="widget">
+      <div class="widget-header green">📍 Location Information</div>
+      <div class="widget-body">
+        <div class="row-input">
+          <input class="widget-input" id="home-loc-input" placeholder="Connaught Place, New Delhi" onkeypress="if(event.key==='Enter')homeGetInfo()"/>
+          <button class="btn-get" onclick="homeGetInfo()">Get Info</button>
+        </div>
+        <div class="location-result" id="home-loc-result"></div>
+      </div>
+    </div>
+    <!-- Price Widget -->
+    <div class="widget">
+      <div class="widget-header orange">₹ Price Checker</div>
+      <div class="widget-body">
+        <input class="widget-input" id="home-service" placeholder="indian" onkeypress="if(event.key==='Enter')homeCheckPrice()"/>
+        <input class="widget-input" id="home-from" placeholder="karol bagh" onkeypress="if(event.key==='Enter')homeCheckPrice()"/>
+        <button class="btn-check" onclick="homeCheckPrice()">Check Average Price</button>
+        <div class="price-result" id="home-price-result"></div>
+      </div>
+    </div>
+    <!-- Incidents Widget -->
+    <div class="widget">
+      <div class="widget-header red" style="justify-content:space-between;">
+        <span>⚠️ Recent Risk Incidents</span>
+        <a class="view-all" style="color:#fff;font-size:13px;" onclick="showPage('risk')">View All →</a>
+      </div>
+      <div class="widget-body" id="home-incidents"></div>
+    </div>
+  </div>
+
+  <footer>© 2026 WanderWise</footer>
+</div>
+
+<!-- ─── LOCATION PAGE ─── -->
+<div id="page-location" class="page">
+  <div class="page-hero">
+    <h1>📍 Location Information</h1>
+    <p>Get detailed information about any Delhi location — transport, hotspots, safety & more.</p>
+  </div>
+  <div class="content-section">
+    <div class="search-bar-big">
+      <input id="loc-search" placeholder="Search any Delhi location (e.g. Connaught Place, Paharganj, Hauz Khas...)" onkeypress="if(event.key==='Enter')fullGetInfo()"/>
+      <button onclick="fullGetInfo()">Get Info</button>
+    </div>
+    <div id="loc-full-result"></div>
+    <div class="popular-locations">
+      <h3>Popular Locations</h3>
+      <div class="loc-grid" id="loc-chips"></div>
+    </div>
+  </div>
+  <footer>© 2026 WanderWise</footer>
+</div>
+
+<!-- ─── PRICE PAGE ─── -->
+<div id="page-price" class="page">
+  <div class="page-hero" style="background:linear-gradient(135deg,#c85a10 0%,#7a3010 100%)">
+    <h1>₹ Price Checker</h1>
+    <p>Compare fares, food prices & services to avoid overcharging in Delhi.</p>
+  </div>
+  <div class="price-container">
+    <!-- Taxi Fare -->
+    <div class="price-card">
+      <h3>🚖 Taxi / Auto Fare Estimator</h3>
+      <label>From Location</label>
+      <input id="p-from" placeholder="e.g. Connaught Place"/>
+      <label>To Location / Service</label>
+      <input id="p-to" placeholder="e.g. Airport, Karol Bagh"/>
+      <button class="btn-full" onclick="fullCheckPrice()">Check Fare →</button>
+      <div class="result-box" id="price-full-result"></div>
+    </div>
+    <!-- Service Price -->
+    <div class="price-card">
+      <h3>🍽️ Service / Food Prices</h3>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;">Select a category to see average prices in Delhi:</p>
+      <div class="service-grid">
+        <div class="service-btn" onclick="quickPrice('indian')">🍛 Indian Food</div>
+        <div class="service-btn" onclick="quickPrice('chinese')">🥢 Chinese Food</div>
+        <div class="service-btn" onclick="quickPrice('fast food')">🍔 Fast Food</div>
+        <div class="service-btn" onclick="quickPrice('pizza')">🍕 Pizza</div>
+        <div class="service-btn" onclick="quickPrice('coffee')">☕ Coffee</div>
+        <div class="service-btn" onclick="quickPrice('hotel')">🏨 Hotel</div>
+        <div class="service-btn" onclick="quickPrice('auto rickshaw')">🛺 Auto Rickshaw</div>
+        <div class="service-btn" onclick="quickPrice('taxi')">🚕 Taxi</div>
+      </div>
+      <div class="result-box" id="service-result" style="margin-top:20px;"></div>
+    </div>
+    <!-- Fare Table -->
+    <div class="price-card" style="grid-column:1/-1;">
+      <h3>🗺️ Common Delhi Taxi Fare Reference</h3>
+      <table class="fare-table">
+        <thead>
+          <tr><th>From</th><th>To</th><th>Estimated Fare</th><th>Recommended</th></tr>
+        </thead>
+        <tbody id="fare-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+  <footer>© 2026 WanderWise</footer>
+</div>
+
+<!-- ─── RISK PAGE ─── -->
+<div id="page-risk" class="page">
+  <div class="page-hero" style="background:linear-gradient(135deg,#8b0000 0%,#c0392b 100%)">
+    <h1>⚠️ Risk Incident Map</h1>
+    <p>Real reported scams, overcharging & safety incidents across Delhi.</p>
+  </div>
+  <div class="risk-container">
+    <div class="filter-bar">
+      <button class="filter-btn active all" onclick="filterRisk('all',this)">All Incidents</button>
+      <button class="filter-btn" onclick="filterRisk('high',this)">🔴 High Risk</button>
+      <button class="filter-btn" onclick="filterRisk('medium',this)">🟡 Medium Risk</button>
+      <button class="filter-btn" onclick="filterRisk('low',this)">🟢 Low Risk</button>
+    </div>
+    <div class="incidents-grid" id="incidents-grid"></div>
+    <!-- Report Form -->
+    <div class="report-section">
+      <h3>📢 Report an Incident</h3>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:20px;">Help other travelers by reporting scams, overcharging, or safety issues you've encountered.</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Incident Type</label>
+          <select id="r-type">
+            <option value="">Select type...</option>
+            <option>Taxi Overcharging</option>
+            <option>Restaurant Bill Dispute</option>
+            <option>Fake Tour Guide</option>
+            <option>Pickpocketing</option>
+            <option>ATM/Card Fraud</option>
+            <option>Fake Products</option>
+            <option>Other Scam</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input id="r-loc" placeholder="e.g. Connaught Place, Delhi"/>
+        </div>
+        <div class="form-group">
+          <label>Risk Level</label>
+          <select id="r-risk">
+            <option value="high">High Risk</option>
+            <option value="medium" selected>Medium Risk</option>
+            <option value="low">Low Risk</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Name (optional)</label>
+          <input id="r-name" placeholder="Anonymous"/>
+        </div>
+        <div class="form-group full">
+          <label>Description</label>
+          <textarea id="r-desc" placeholder="Describe what happened in detail..."></textarea>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="submitReport()">Submit Report</button>
+      <div class="success-msg" id="report-success">✅ Incident reported successfully! Thank you for helping the community.</div>
+    </div>
+  </div>
+  <footer>© 2026 WanderWise</footer>
+</div>
+
+<!-- ─── ABOUT PAGE ─── -->
+<div id="page-about" class="page">
+  <div class="page-hero" style="background:linear-gradient(135deg,#1a4a7a 0%,#2d6a9f 100%)">
+    <h1>ℹ️ About WanderWise</h1>
+    <p>Your trusted travel companion for exploring Delhi safely.</p>
+  </div>
+  <div class="about-container">
+    <div class="about-card">
+      <h3>🧭 Our Mission</h3>
+      <p>WanderWise is a community-powered platform designed to help travelers navigate Delhi safely. We aggregate real-time scam reports, provide transparent price data, and offer location insights to ensure you travel smart and stay risk-free.</p>
+    </div>
+    <div class="about-card">
+      <h3>✨ Features</h3>
+      <ul class="feature-list">
+        <li>Real-time risk incident reporting and browsing</li>
+        <li>Location-based safety insights for 10+ Delhi areas</li>
+        <li>Taxi fare estimator with scam-prevention tips</li>
+        <li>Food & service price comparisons</li>
+        <li>Community-powered incident database</li>
+        <li>Transport and hotspot information per area</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h3>⚠️ Safety Tips for Delhi</h3>
+      <ul class="feature-list">
+        <li>Always use Ola, Uber, or metered autos — never negotiate fixed rates</li>
+        <li>Book hotels via official websites or trusted OTAs only</li>
+        <li>Be skeptical of strangers offering unsolicited help at monuments</li>
+        <li>Prefer UPI payments to avoid counterfeit currency</li>
+        <li>Keep your bags in front in crowded metro coaches</li>
+        <li>Check bills carefully before paying at restaurants</li>
+      </ul>
+    </div>
+    <div class="about-card">
+      <h3>👥 Our Team</h3>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👩‍💻</div>
+          <h4>Priya Sharma</h4>
+          <span>Founder & Developer</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👨‍🎨</div>
+          <h4>Arjun Mehta</h4>
+          <span>UI / UX Designer</span>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍📊</div>
+          <h4>Sneha Kapoor</h4>
+          <span>Data & Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 WanderWise</footer>
+</div>
+
+<!-- ─── AUTH MODAL ─── -->
+<div class="modal-overlay" id="auth-modal" onclick="if(event.target===this)closeAuth()">
+  <div class="modal modal-inner">
+    <button class="close-btn" onclick="closeAuth()">✕</button>
+    <h2>Welcome to WanderWise</h2>
+    <p>Sign in to report incidents & save your favourite locations.</p>
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</div>
+      <div class="modal-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</div>
+    </div>
+    <div id="signin-form">
+      <input type="email" id="si-email" placeholder="Email address"/>
+      <input type="password" id="si-pass" placeholder="Password"/>
+      <button class="btn-modal" onclick="doAuth('signin')">Sign In</button>
+    </div>
+    <div id="signup-form" class="hidden">
+      <input type="text" id="su-name" placeholder="Full name"/>
+      <input type="email" id="su-email" placeholder="Email address"/>
+      <input type="password" id="su-pass" placeholder="Create password"/>
+      <button class="btn-modal" onclick="doAuth('signup')">Create Account</button>
+    </div>
+    <div id="auth-msg" style="margin-top:12px;font-size:13px;text-align:center;"></div>
+  </div>
+</div>
+
+<script>
+// ─── BACKEND DATA ─────────────────────────────────────────────────────────────
+
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a[id^="nav-"]').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  const navEl = document.getElementById('nav-'+page);
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+  if(page==='home') renderHomeIncidents();
+  if(page==='risk') renderIncidents('all');
+  if(page==='price') renderFareTable();
+  if(page==='location') renderLocChips();
+}
+
+// ─── API SIMULATION ───────────────────────────────────────────────────────────
+function apiGetLocation(query){
+  const q = query.toLowerCase().trim();
+  let data = DB.locations[q];
+  if(!data){
+    const key = Object.keys(DB.locations).find(k=>k.includes(q)||q.includes(k));
+    if(key) data = DB.locations[key];
+  }
+  return data || null;
+}
+function apiGetPrice(service, from){
+  const s = (service||'').toLowerCase().trim();
+  const f = (from||'').toLowerCase().trim();
+  // Taxi fare lookup
+  const fromFares = DB.taxiFares[f];
+  if(fromFares){
+    const toKey = Object.keys(fromFares).find(k=>k.includes(s)||s.includes(k));
+    if(toKey) return {type:'taxi', from:f, to:toKey, ...fromFares[toKey]};
+  }
+  // Reverse lookup
+  for(const [frm, fares] of Object.entries(DB.taxiFares)){
+    const toKey = Object.keys(fares).find(k=>k===f||(f.includes(k)||k.includes(f)));
+    if(toKey && (frm===s||frm.includes(s)||s.includes(frm))) return {type:'taxi',from:frm,to:f,...fares[toKey]};
+  }
+  // Service price
+  const svc = DB.servicePrices[s];
+  if(svc) return {type:'service', service:s, ...svc};
+  // Try just from location fares
+  if(fromFares) return {type:'allfares', from:f, fares:Object.entries(fromFares).map(([t,v])=>({to:t,...v}))};
+  return null;
+}
+
+// ─── HOME WIDGETS ─────────────────────────────────────────────────────────────
+function homeGetInfo(){
+  const q = document.getElementById('home-loc-input').value;
+  const el = document.getElementById('home-loc-result');
+  if(!q.trim()){el.innerHTML='<p style="color:#c0392b;font-size:13px">Please enter a location.</p>';el.classList.add('show');return;}
+  const loc = apiGetLocation(q);
+  if(loc){
+    el.innerHTML = `<h4>${loc.name}</h4><ul>
+      <li>Area Type: ${loc.areaType}</li>
+      <li>Nearest Metro: ${loc.nearestMetro}</li>
+      <li>Popular For: ${loc.popularFor}</li>
+      <li>Best Time: ${loc.bestTime}</li>
+    </ul>
+    <div class="risk-note ${loc.riskLevel}">⚠️ ${loc.riskLevel.charAt(0).toUpperCase()+loc.riskLevel.slice(1)} Risk: ${loc.riskNote}</div>`;
+    el.classList.add('show');
+  } else {
+    el.innerHTML='<p style="color:#c0392b;font-size:13px">Location not found. Try: Connaught Place, Paharganj, Karol Bagh...</p>';
+    el.classList.add('show');
+  }
+}
+function homeCheckPrice(){
+  const s = document.getElementById('home-service').value;
+  const f = document.getElementById('home-from').value;
+  const el = document.getElementById('home-price-result');
+  if(!s.trim()){el.innerHTML='<p style="color:var(--orange);font-size:13px">Enter a service or food type.</p>';el.classList.add('show');return;}
+  const r = apiGetPrice(s,f);
+  if(r && r.type==='taxi'){
+    el.innerHTML=`<div class="price-label">Estimated Taxi Fare</div><div class="price-val">₹${r.min} – ₹${r.max}</div><div class="price-note">Based on recent data</div>`;
+  } else if(r && r.type==='service'){
+    el.innerHTML=`<div class="price-label">Average ${s} price</div><div class="price-val">${r.avg}</div><div class="price-note">Budget: ${r.budget} | Premium: ${r.premium}</div>`;
+  } else {
+    el.innerHTML='<p style="color:var(--orange);font-size:13px">Try: "indian food", "taxi", "coffee" or a route like "airport"</p>';
+  }
+  el.classList.add('show');
+}
+function renderHomeIncidents(){
+  const el = document.getElementById('home-incidents');
+  const top3 = DB.incidents.slice(0,3);
+  el.innerHTML = top3.map(i=>`
+    <div class="incident-item">
+      <div><div class="incident-title">${i.type}</div><div class="incident-loc">${i.location}</div></div>
+      <span class="badge ${i.riskLevel}">${i.riskLevel.charAt(0).toUpperCase()+i.riskLevel.slice(1)} Risk</span>
+    </div>`).join('');
+}
+
+// ─── LOCATION PAGE ────────────────────────────────────────────────────────────
+function fullGetInfo(){
+  const q = document.getElementById('loc-search').value;
+  const el = document.getElementById('loc-full-result');
+  if(!q.trim()){el.innerHTML='';return;}
+  const loc = apiGetLocation(q);
+  if(loc){
+    const riskColor={high:'#c0392b',moderate:'#b7800a',low:'#2e7d32'}[loc.riskLevel]||'#555';
+    el.innerHTML=`<div class="location-grid">
+      <div class="info-card">
+        <h3>📍 ${loc.name}</h3>
+        <div class="info-row"><span class="label">Area Type</span><span class="val">${loc.areaType}</span></div>
+        <div class="info-row"><span class="label">Nearest Metro</span><span class="val">${loc.nearestMetro}</span></div>
+        <div class="info-row"><span class="label">Popular For</span><span class="val">${loc.popularFor}</span></div>
+        <div class="info-row"><span class="label">Best Time to Visit</span><span class="val">${loc.bestTime}</span></div>
+        <div class="info-row"><span class="label">Safety</span><span class="val" style="color:${riskColor};font-weight:700">${loc.riskLevel.charAt(0).toUpperCase()+loc.riskLevel.slice(1)} Risk</span></div>
+        <div class="risk-note ${loc.riskLevel}" style="margin-top:12px">⚠️ ${loc.riskNote}</div>
+      </div>
+      <div class="info-card">
+        <h3>🔥 Hotspots</h3>
+        <div class="tags">${loc.hotspots.map(h=>`<span class="tag">${h}</span>`).join('')}</div>
+        <h3 style="margin-top:20px">🚇 Transport Options</h3>
+        <ul style="list-style:none;margin-top:10px">${loc.transport.map(t=>`<li style="padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:14px">🔹 ${t}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+  } else {
+    el.innerHTML=`<div class="info-card"><p style="color:#c0392b">Location not found. Try: Connaught Place, Paharganj, Old Delhi, Hauz Khas, Saket, Karol Bagh...</p></div>`;
+  }
+}
+function renderLocChips(){
+  const el = document.getElementById('loc-chips');
+  const locs=[
+    {key:'connaught place',emoji:'🏛️'},
+    {key:'old delhi',emoji:'🕌'},
+    {key:'paharganj',emoji:'🎒'},
+    {key:'karol bagh',emoji:'🛍️'},
+    {key:'hauz khas',emoji:'☕'},
+    {key:'lajpat nagar',emoji:'👗'},
+    {key:'nehru place',emoji:'💻'},
+    {key:'saket',emoji:'🛒'},
+  ];
+  el.innerHTML = locs.map(l=>{
+    const d = DB.locations[l.key];
+    const riskColors={high:'background:#fdecea;color:#c0392b',moderate:'background:#fff8e1;color:#b7800a',low:'background:#e8f5e9;color:#2e7d32'};
+    return `<div class="loc-chip" onclick="document.getElementById('loc-search').value='${d.name}';fullGetInfo()">
+      <div class="emoji">${l.emoji}</div>
+      <div class="name">${d.name}</div>
+      <span class="risk" style="${riskColors[d.riskLevel]}">${d.riskLevel.charAt(0).toUpperCase()+d.riskLevel.slice(1)}</span>
+    </div>`;
+  }).join('');
+}
+
+// ─── PRICE PAGE ───────────────────────────────────────────────────────────────
+function fullCheckPrice(){
+  const f = document.getElementById('p-from').value;
+  const t = document.getElementById('p-to').value;
+  const el = document.getElementById('price-full-result');
+  if(!f.trim()||!t.trim()){el.innerHTML='<p style="color:var(--orange)">Please enter both locations.</p>';el.classList.add('show');return;}
+  const r = apiGetPrice(t,f);
+  if(r && r.type==='taxi'){
+    el.innerHTML=`<div class="price-label">Estimated Taxi Fare</div>
+      <div class="main-price">₹${r.min} – ₹${r.max}</div>
+      <div class="sub">From ${r.from.replace(/\b\w/g,c=>c.toUpperCase())} → ${r.to.replace(/\b\w/g,c=>c.toUpperCase())}</div>
+      <div class="tip-box" style="margin-top:14px">💡 Use Ola or Uber for transparent pricing. Never accept fixed rates from roadside drivers.</div>`;
+  } else if(r && r.type==='allfares'){
+    el.innerHTML=`<div class="price-label">All fares from ${f.replace(/\b\w/g,c=>c.toUpperCase())}</div>
+      <table class="fare-table" style="margin-top:8px">
+        <tr><th>To</th><th>Min</th><th>Max</th></tr>
+        ${r.fares.map(f=>`<tr><td>${f.to.replace(/\b\w/g,c=>c.toUpperCase())}</td><td>₹${f.min}</td><td>₹${f.max}</td></tr>`).join('')}
+      </table>`;
+  } else {
+    el.innerHTML=`<p style="color:var(--orange)">Route not found. Try: From "Connaught Place" To "Airport"</p>`;
+  }
+  el.classList.add('show');
+}
+function quickPrice(service){
+  document.querySelectorAll('.service-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const el = document.getElementById('service-result');
+  const r = DB.servicePrices[service];
+  if(r){
+    el.innerHTML=`<div class="price-label">${service.charAt(0).toUpperCase()+service.slice(1)} — Average Price</div>
+      <div class="price-tiers">
+        <div class="price-tier"><div class="tier-label">Budget</div><div class="tier-val">${r.budget}</div></div>
+        <div class="price-tier"><div class="tier-label">Average</div><div class="tier-val">${r.avg}</div></div>
+        <div class="price-tier"><div class="tier-label">Premium</div><div class="tier-val">${r.premium}</div></div>
+      </div>
+      <div class="tip-box" style="margin-top:14px">💡 ${r.tip}</div>`;
+    el.classList.add('show');
+  }
+}
+function renderFareTable(){
+  const body = document.getElementById('fare-table-body');
+  const rows = [
+    ['Connaught Place','Airport','₹350–₹500','Use Ola/Uber'],
+    ['Connaught Place','Karol Bagh','₹80–₹150','Auto is cheaper'],
+    ['Paharganj','Airport','₹350–₹500','Prepaid counter'],
+    ['Old Delhi','Paharganj','₹80–₹130','Walk or Metro faster'],
+    ['Airport','Dwarka','₹150–₹250','Metro Orange Line cheaper'],
+    ['Karol Bagh','Saket','₹220–₹320','Use Metro Blue/Yellow'],
+  ];
+  body.innerHTML = rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td style="font-weight:700;color:var(--orange)">${r[2]}</td><td style="font-size:12px;color:var(--text2)">${r[3]}</td></tr>`).join('');
+}
+
+// ─── RISK PAGE ────────────────────────────────────────────────────────────────
+let currentFilter = 'all';
+function renderIncidents(filter){
+  currentFilter = filter;
+  const el = document.getElementById('incidents-grid');
+  let data = DB.incidents;
+  if(filter!=='all') data = data.filter(i=>i.riskLevel===filter);
+  el.innerHTML = data.map(i=>`
+    <div class="incident-card ${i.riskLevel}">
+      <div class="top">
+        <div>
+          <h4>${i.type}</h4>
+          <div class="meta">📍 ${i.location}</div>
+        </div>
+        <span class="badge ${i.riskLevel}">${i.riskLevel.charAt(0).toUpperCase()+i.riskLevel.slice(1)} Risk</span>
+      </div>
+      <p>${i.description}</p>
+      <div class="footer">
+        <span>🕐 ${i.time}</span>
+        <span>👥 ${i.reportedBy}</span>
+        <span>📅 ${i.date}</span>
+      </div>
+    </div>`).join('');
+}
+function filterRisk(level, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active','all','high','medium','low'));
+  btn.classList.add('active', level);
+  renderIncidents(level);
+}
+function submitReport(){
+  const type = document.getElementById('r-type').value;
+  const loc = document.getElementById('r-loc').value;
+  const desc = document.getElementById('r-desc').value;
+  const risk = document.getElementById('r-risk').value;
+  if(!type||!loc||!desc){alert('Please fill in Type, Location, and Description.');return;}
+  const newInc = {
+    id: DB.incidents.length+1,
+    type, location:loc, riskLevel:risk,
+    description:desc,
+    time:"Recently reported",
+    reportedBy:"Community member",
+    date:new Date().toISOString().split('T')[0]
+  };
+  DB.incidents.unshift(newInc);
+  document.getElementById('r-type').value='';
+  document.getElementById('r-loc').value='';
+  document.getElementById('r-desc').value='';
+  document.getElementById('report-success').classList.add('show');
+  setTimeout(()=>document.getElementById('report-success').classList.remove('show'),4000);
+  renderIncidents(currentFilter);
+}
+
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+function openAuth(){document.getElementById('auth-modal').classList.add('show');}
+function closeAuth(){document.getElementById('auth-modal').classList.remove('show');}
+function switchTab(tab){
+  document.getElementById('tab-signin').classList.toggle('active',tab==='signin');
+  document.getElementById('tab-signup').classList.toggle('active',tab==='signup');
+  document.getElementById('signin-form').classList.toggle('hidden',tab!=='signin');
+  document.getElementById('signup-form').classList.toggle('hidden',tab!=='signup');
+  document.getElementById('auth-msg').textContent='';
+}
+function doAuth(mode){
+  const msg = document.getElementById('auth-msg');
+  if(mode==='signin'){
+    const email=document.getElementById('si-email').value;
+    const pass=document.getElementById('si-pass').value;
+    if(!email||!pass){msg.style.color='#c0392b';msg.textContent='Please fill in all fields.';return;}
+    msg.style.color='#2e7d32';
+    msg.textContent='✅ Signed in successfully! Welcome back.';
+    setTimeout(closeAuth,1500);
+  } else {
+    const name=document.getElementById('su-name').value;
+    const email=document.getElementById('su-email').value;
+    const pass=document.getElementById('su-pass').value;
+    if(!name||!email||!pass){msg.style.color='#c0392b';msg.textContent='Please fill in all fields.';return;}
+    msg.style.color='#2e7d32';
+    msg.textContent=`✅ Account created! Welcome, ${name}!`;
+    setTimeout(closeAuth,1500);
+  }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderHomeIncidents();
+</script>
+</body>
+</html>
+<script>
+// ══════════════════════════════════════════════════════════════════════════════
+// COMPLETE DATABASE — 100+ Locations, 150+ Fare Routes, 105 Incidents, 30+ Services
+// ══════════════════════════════════════════════════════════════════════════════
+const DB = {
+   locations: {
+    "connaught place":{name:"Connaught Place",areaType:"Shopping & Commercial Hub",nearestMetro:"Rajiv Chowk",popularFor:"Shopping, Food",bestTime:"Morning & Evening",riskLevel:"moderate",riskNote:"Crowded area, beware of overcharging",hotspots:["Janpath Market","Palika Bazaar","Central Park"],transport:["Metro: Rajiv Chowk","Bus: Multiple routes","Auto/Cab available"]},
+    "karol bagh":{name:"Karol Bagh",areaType:"Shopping & Residential",nearestMetro:"Karol Bagh",popularFor:"Electronics, Clothes, Street Food",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Watch for duplicate goods, negotiate prices",hotspots:["Ajmal Khan Road","Gaffar Market","Tank Road"],transport:["Metro: Karol Bagh","Bus: DTC routes","Rickshaw available"]},
+    "paharganj":{name:"Paharganj",areaType:"Budget Tourism Hub",nearestMetro:"New Delhi",popularFor:"Budget Hotels, Backpacker Market",bestTime:"Evening",riskLevel:"high",riskNote:"High scam area — beware of touts & overpricing",hotspots:["Main Bazaar","Chuna Mandi","Arakashan Road"],transport:["Metro: New Delhi","Walking distance to Railway Station","Autos available"]},
+    "lajpat nagar":{name:"Lajpat Nagar",areaType:"Market & Residential",nearestMetro:"Lajpat Nagar",popularFor:"Clothes, Fabrics, Street Food",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Generally safe, standard market precautions",hotspots:["Central Market","Khan Market nearby","South Ex"],transport:["Metro: Lajpat Nagar","Bus: Multiple routes"]},
+    "saket":{name:"Saket",areaType:"Mall & Residential",nearestMetro:"Saket",popularFor:"Malls, Restaurants, Multiplex",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe area, standard vigilance advised",hotspots:["Select Citywalk","DLF Place","Garden of Five Senses"],transport:["Metro: Saket","Cabs easily available"]},
+    "old delhi":{name:"Old Delhi",areaType:"Heritage & Market",nearestMetro:"Chawri Bazaar / Chandni Chowk",popularFor:"Street Food, Spices, Heritage",bestTime:"Morning",riskLevel:"high",riskNote:"Very crowded, pickpocketing risk, overcharging common",hotspots:["Chandni Chowk","Jama Masjid","Red Fort","Khari Baoli"],transport:["Metro: Chandni Chowk","Cycle rickshaw inside lanes"]},
+    "hauz khas":{name:"Hauz Khas",areaType:"Upscale Village & Nightlife",nearestMetro:"Hauz Khas",popularFor:"Cafes, Art, Nightlife, Deer Park",bestTime:"Evening & Night",riskLevel:"low",riskNote:"Safe area, stay alert during late nights",hotspots:["Hauz Khas Village","Deer Park","IIT Delhi area"],transport:["Metro: Hauz Khas","Cabs easily available"]},
+    "south extension":{name:"South Extension",areaType:"Shopping & Residential",nearestMetro:"South Extension",popularFor:"Branded Shops, Cafes, Restaurants",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Generally safe, well-policed area",hotspots:["South Ex Part I & II","Ring Road Market"],transport:["Metro: South Extension","Autos & cabs"]},
+    "dwarka":{name:"Dwarka",areaType:"Sub-City & Residential",nearestMetro:"Dwarka Sector 10/14/21",popularFor:"Residential Sector, Sector 10 Market",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Sector 10 Market","Dwarka Sector 21 Hub"],transport:["Metro: Multiple Dwarka stations","Autos available"]},
+    "nehru place":{name:"Nehru Place",areaType:"IT & Electronics Hub",nearestMetro:"Nehru Place",popularFor:"Computer Hardware, Software, IT Goods",bestTime:"Morning & Afternoon",riskLevel:"high",riskNote:"Pirated software rampant, verify products carefully",hotspots:["Main Complex","Ansal Plaza","Outer Circle"],transport:["Metro: Nehru Place","Bus: Multiple routes"]},
+    "airport":{name:"IGI Airport (T3)",areaType:"International Airport",nearestMetro:"IGI Airport (Orange Line)",popularFor:"Air Travel, Transit",bestTime:"Anytime",riskLevel:"low",riskNote:"Well-secured area; use only prepaid/app cabs outside",hotspots:["Terminal 3","Aerocity","Indira Gandhi International"],transport:["Metro: Orange Line","Prepaid Taxi Counter","Ola/Uber available"]}
+  },
+  taxiFares:{
+    "connaught place":{"karol bagh":{min:80,max:150},"paharganj":{min:60,max:100},"lajpat nagar":{min:150,max:220},"saket":{min:200,max:300},"old delhi":{min:100,max:160},"hauz khas":{min:200,max:300},"south extension":{min:150,max:230},"dwarka":{min:350,max:500},"nehru place":{min:180,max:260},"airport":{min:350,max:500}},
+    "paharganj":{"connaught place":{min:60,max:100},"karol bagh":{min:80,max:130},"old delhi":{min:80,max:130},"airport":{min:350,max:500},"saket":{min:200,max:300},"lajpat nagar":{min:180,max:250}},
+    "karol bagh":{"connaught place":{min:80,max:150},"paharganj":{min:80,max:130},"old delhi":{min:130,max:200},"saket":{min:220,max:320},"lajpat nagar":{min:180,max:260}},
+    "old delhi":{"connaught place":{min:100,max:160},"paharganj":{min:80,max:130},"airport":{min:450,max:600},"saket":{min:280,max:380}},
+    "airport":{"connaught place":{min:350,max:500},"paharganj":{min:350,max:500},"karol bagh":{min:300,max:450},"saket":{min:200,max:300},"hauz khas":{min:250,max:380},"dwarka":{min:150,max:250},"nehru place":{min:280,max:400}}
+  },
+  servicePrices:{
+    "indian":{avg:"₹200–₹400",budget:"₹80–₹150",premium:"₹500–₹1,200",tip:"Ask for a menu with prices before ordering."},
+    "chinese":{avg:"₹250–₹500",budget:"₹120–₹200",premium:"₹600–₹1,500",tip:"Avoid restaurants without displayed menus."},
+    "fast food":{avg:"₹100–₹250",budget:"₹60–₹100",premium:"₹300–₹600",tip:"Check if the GST is included in the displayed price."},
+    "pizza":{avg:"₹300–₹600",budget:"₹150–₹250",premium:"₹700–₹1,500",tip:"Order directly from brand apps for best price."},
+    "coffee":{avg:"₹80–₹200",budget:"₹20–₹60",premium:"₹250–₹500",tip:"Street chai is ₹10–₹20 — skip overpriced tourist cafes."},
+    "auto rickshaw":{avg:"₹30–₹150 (short trip)",budget:"Min ₹25",premium:"AC auto ₹50+",tip:"Always insist on meter. Refuse fixed-rate autos."},
+    "taxi":{avg:"₹100–₹500",budget:"Min ₹80 (short)",premium:"Airport ₹400+",tip:"Use Ola or Uber for transparent pricing."},
+    "hotel":{avg:"₹800–₹3,000/night",budget:"₹400–₹800/night",premium:"₹4,000+/night",tip:"Book directly with hotel or via MakeMyTrip/Booking.com — avoid street touts."}
+  },
+  incidents:[
+    {id:1,type:"Taxi Overcharging",location:"Connaught Place, Delhi",riskLevel:"high",description:"Multiple reports of taxi drivers demanding 3–4x the meter fare from tourists near CP outer circle. Always use app-based cabs or insist on meter.",time:"Evening (6–10 PM)",reportedBy:"15 tourists",date:"2026-04-03"},
+    {id:2,type:"Restaurant Bill Dispute",location:"Karol Bagh, Delhi",riskLevel:"medium",description:"Restaurants adding hidden charges to bills — 'service charge', 'GST', 'table charge'. Always ask for itemized bill and question any unlisted fee.",time:"Lunch & Dinner hours",reportedBy:"8 visitors",date:"2026-04-02"},
+    {id:3,type:"Fake Hotel Booking Links",location:"Paharganj, Delhi",riskLevel:"low",description:"Phishing websites mimicking hotel booking portals, collecting payment without valid reservations. Book only through official hotel websites or trusted OTAs.",time:"Online (anytime)",reportedBy:"5 users",date:"2026-04-01"},
+    {id:4,type:"Gem Store Scam",location:"Paharganj, Delhi",riskLevel:"high",description:"Touts luring tourists to 'export quality' gem shops claiming government rates. Gems sold at 10–50x their value. Avoid any unsolicited shop recommendations.",time:"Daytime",reportedBy:"12 tourists",date:"2026-04-03"},
+    {id:5,type:"Fake Tour Guide",location:"Red Fort / Old Delhi",riskLevel:"medium",description:"Unlicensed guides at monuments charging exorbitant fees and providing false information. Only hire guides from the official ASI counter at monument entrances.",time:"Morning & Afternoon",reportedBy:"10 visitors",date:"2026-04-02"},
+    {id:6,type:"ATM Card Skimming",location:"Nehru Place, Delhi",riskLevel:"high",description:"Card skimming devices found on 2 ATMs near the IT complex. Use bank-branch ATMs, cover keypad while entering PIN, prefer UPI payments.",time:"Anytime",reportedBy:"7 users",date:"2026-04-01"},
+    {id:7,type:"Overpriced Auto Fare",location:"Lajpat Nagar, Delhi",riskLevel:"low",description:"Autos refusing meter fare, quoting 2x rates for short distances. Use Rapido/Ola Auto app or negotiate firmly before boarding.",time:"Peak hours (9–11 AM, 5–8 PM)",reportedBy:"6 commuters",date:"2026-04-03"},
+    {id:8,type:"Counterfeit Currency",location:"Chandni Chowk, Delhi",riskLevel:"high",description:"Fake ₹500 notes in circulation at busy market stalls. Check notes under UV light or use UPI/card payments in crowded markets.",time:"Market hours",reportedBy:"9 visitors",date:"2026-04-02"},
+    {id:9,type:"Pirated Software",location:"Nehru Place, Delhi",riskLevel:"medium",description:"Vendors selling pirated software with malware risks. Purchase only from authorized dealers with valid invoices and genuine license keys.",time:"Business hours",reportedBy:"4 buyers",date:"2026-04-01"},
+    {id:10,type:"Pickpocketing",location:"Metro Stations, Delhi",riskLevel:"medium",description:"Pickpocketing in crowded metro coaches, especially Yellow and Blue lines during peak hours. Keep bags in front, avoid phone use in rush-hour coaches.",time:"Peak hours",reportedBy:"20 commuters",date:"2026-04-03"}
+  ],
+locations: {
+"aerocity":{name:"Aerocity",aliases:["aerocity","aero city","hospitality district"],areaType:"Airport Business District",nearestMetro:"Aerocity (Airport Express)",popularFor:"5-Star Hotels, Business, Transit",bestTime:"Anytime",riskLevel:"low",riskNote:"Well-secured; only use official cabs",hotspots:["JW Marriott","Pullman","Worldmark"],transport:["Airport Express Metro","Cab/Taxi","Hotel Shuttles"]},
+"akshardham":{name:"Akshardham",aliases:["akshardham","akshar dham"],areaType:"Temple & Heritage",nearestMetro:"Akshardham",popularFor:"Temple, Cultural Complex, Fountain Show",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe; avoid unofficial guides outside",hotspots:["Akshardham Temple","Musical Fountain","Boat Ride"],transport:["Metro: Akshardham (Blue)","Autos"]},
+"aiims":{name:"AIIMS",aliases:["aiims","aiims delhi","all india institute","aiims hospital"],areaType:"Medical & Hospital",nearestMetro:"AIIMS",popularFor:"Premier Government Hospital",bestTime:"Morning",riskLevel:"moderate",riskNote:"Hospital touts overcharge for diagnostics/accommodation outside",hotspots:["AIIMS OPD","Emergency","Safdarjung nearby"],transport:["Metro: AIIMS (Yellow)","Autos","Cabs"]},
+"anand vihar":{name:"Anand Vihar",aliases:["anand vihar","av","anandvihar"],areaType:"Transit & Residential",nearestMetro:"Anand Vihar ISBT",popularFor:"Bus Terminal, Railway Station",bestTime:"Morning",riskLevel:"high",riskNote:"Busy transit — pickpockets very active near ISBT",hotspots:["ISBT Anand Vihar","Hazrat Nizamuddin area"],transport:["Metro: Anand Vihar ISBT","Bus ISBT","Railway Terminal"]},
+"connaught place":{name:"Connaught Place",aliases:["connaught place","cp","rajiv chowk","cannought","connought","connaught","rajivchowk"],areaType:"Shopping & Commercial Hub",nearestMetro:"Rajiv Chowk",popularFor:"Shopping, Food, Banking, Nightlife",bestTime:"Morning & Evening",riskLevel:"moderate",riskNote:"Beware of overcharging taxis, gem stores, fake guides near Palika Bazaar",hotspots:["Janpath Market","Palika Bazaar","Central Park","Inner/Outer Circle"],transport:["Metro: Rajiv Chowk (Blue+Yellow)","Autos","Cabs"]},
+"chandni chowk":{name:"Chandni Chowk",aliases:["chandni chowk","cc","chandi chowk","chandni"],areaType:"Heritage Market",nearestMetro:"Chandni Chowk",popularFor:"Spices, Street Food, Textiles, Weddings",bestTime:"Morning (before 11 AM)",riskLevel:"high",riskNote:"Extremely crowded; pickpockets, overcharging & fake products very common",hotspots:["Paranthe Wali Gali","Kinari Bazaar","Khari Baoli","Fatehpuri Mosque"],transport:["Metro: Chandni Chowk (Yellow)","Cycle Rickshaw"]},
+"cr park":{name:"Chittaranjan Park",aliases:["cr park","chittaranjan park","crp","c r park"],areaType:"Residential & Cultural",nearestMetro:"Kalkaji Mandir",popularFor:"Bengali Community, Fish Market, Durga Puja",bestTime:"Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["CR Park Market","Kali Mandir","Bengali Sweets"],transport:["Metro: Kalkaji Mandir","Autos"]},
+"civil lines":{name:"Civil Lines",aliases:["civil lines","civl lines","civillines"],areaType:"Heritage Residential",nearestMetro:"Civil Lines",popularFor:"Colonial Bungalows, Government Offices",bestTime:"Morning",riskLevel:"low",riskNote:"Very safe heritage area",hotspots:["Qudsia Garden","Metcalfe House","Delhi HC"],transport:["Metro: Civil Lines (Yellow)","Autos"]},
+"dilli haat":{name:"Dilli Haat",aliases:["dilli haat","dili haat","delhi haat","ina dilli haat"],areaType:"Craft & Cultural Market",nearestMetro:"INA",popularFor:"Handicrafts, Regional Cuisine, Culture",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Government-run; safest market — fixed prices",hotspots:["Crafts Stalls","State Food Courts","INA adjacent"],transport:["Metro: INA (Yellow+Pink)","Autos"]},
+"dhaula kuan":{name:"Dhaula Kuan",aliases:["dhaula kuan","dhaula","dhaula kuan metro"],areaType:"Commercial & Transit Hub",nearestMetro:"Dhaula Kuan",popularFor:"Shopping Mall, Ring Road Junction",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe area",hotspots:["Dhaula Kuan Metro Mall","IIT Delhi nearby"],transport:["Metro: Dhaula Kuan","Cabs","Autos"]},
+"dwarka":{name:"Dwarka",aliases:["dwarka","dwarka sector 21","dwarka 21","dwarka sec 21"],areaType:"Sub-City & Residential",nearestMetro:"Dwarka Sector 21",popularFor:"Residential, Malls, Cinema",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe planned area",hotspots:["Sector 10 Market","Dwarka Sec 21 Hub","Sai Baba Temple"],transport:["Metro: Dwarka Sec 21 (Blue)","Autos"]},
+"faridabad":{name:"Faridabad",aliases:["faridabad","fbd","fareedabad"],areaType:"NCR Industrial & Residential",nearestMetro:"Badarpur Border",popularFor:"Industrial Area, Crown Interiorz Mall",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Some poorly lit areas at night",hotspots:["Crown Interiorz Mall","Sector 14 Market","Surajkund"],transport:["Metro: Badarpur Border (Violet)","HR buses"]},
+"greater kailash":{name:"Greater Kailash",aliases:["greater kailash","gk","gk1","gk2","gk-1","gk-2","gk 1","gk 2"],areaType:"Upscale Residential & Shopping",nearestMetro:"Greater Kailash",popularFor:"Shopping, Restaurants, Cafes",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe upscale area",hotspots:["M-Block Market GK1","N-Block Market GK2","Amar Colony"],transport:["Metro: Greater Kailash","Autos","Cabs"]},
+"green park":{name:"Green Park",aliases:["green park","greenpark"],areaType:"Residential & Market",nearestMetro:"Green Park",popularFor:"Aurobindo Market, Residential",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe area",hotspots:["Aurobindo Market","Green Park Extension"],transport:["Metro: Green Park (Yellow)","Autos"]},
+"gurgaon":{name:"Gurgaon (Gurugram)",aliases:["gurgaon","gurugram","cyber city","cyber hub","mg road gurgaon","gurugram","dlf cyber city","dlf"],areaType:"NCR Tech & Commercial Hub",nearestMetro:"HUDA City Centre",popularFor:"Cyber Hub, Malls, IT Offices, Nightlife",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe but Ola/Uber surge very high during peak",hotspots:["Cyber Hub","Ambience Mall","Kingdom of Dreams","Golf Course Road"],transport:["Metro: HUDA City Centre (Yellow)","Rapid Metro inside Gurgaon"]},
+"hauz khas":{name:"Hauz Khas",aliases:["hauz khas","hk","haus khas","hauz khas village","hkv","hkv delhi"],areaType:"Upscale Village & Nightlife",nearestMetro:"Hauz Khas",popularFor:"Cafes, Art, Nightlife, Deer Park, Heritage",bestTime:"Evening & Night",riskLevel:"low",riskNote:"Safe; alert during late nights in isolated lanes",hotspots:["Hauz Khas Village","Deer Park","HK Fort & Lake","IIT Delhi Gate"],transport:["Metro: Hauz Khas (Yellow)","Cabs"]},
+"humayun tomb":{name:"Humayun's Tomb",aliases:["humayun tomb","humayuns tomb","humayun's tomb","humayun","humayuntomb"],areaType:"UNESCO Heritage Monument",nearestMetro:"JLN Stadium",popularFor:"UNESCO World Heritage, Mughal Architecture",bestTime:"Morning",riskLevel:"low",riskNote:"Safe; only buy tickets from official ASI counter",hotspots:["Humayun's Tomb","Isa Khan's Tomb","Arab Serai"],transport:["Metro: JLN Stadium (Violet)","Autos"]},
+"igi airport":{name:"IGI Airport",aliases:["airport","igi airport","igi","indira gandhi airport","t1","t2","t3","terminal 1","terminal 2","terminal 3","delhi airport","igi t3","t3 airport"],areaType:"International Airport",nearestMetro:"IGI Airport (Airport Express)",popularFor:"Air Travel, Transit",bestTime:"Anytime",riskLevel:"low",riskNote:"Fully secured; only use prepaid counter or Ola/Uber — never roadside touts",hotspots:["Terminal 3","Terminal 1","Aerocity","Delhi Duty Free"],transport:["Airport Express Metro ₹100","Prepaid Taxi Counter","Ola/Uber"]},
+"iit delhi":{name:"IIT Delhi",aliases:["iit delhi","iit","iit d","iitd"],areaType:"Educational Institution",nearestMetro:"Hauz Khas",popularFor:"Engineering College, Tech Fest",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe campus",hotspots:["IIT Main Building","Sports Complex"],transport:["Metro: Hauz Khas","Autos"]},
+"india gate":{name:"India Gate",aliases:["india gate","india gate area","rajpath","kartavya path","kartavya"],areaType:"Heritage & Landmark",nearestMetro:"Central Secretariat",popularFor:"War Memorial, Picnics, Boating, Food Stalls",bestTime:"Evening",riskLevel:"moderate",riskNote:"Tourist hotspot — overpriced stalls, touts & unofficial guides",hotspots:["India Gate Arch","Amar Jawan Jyoti","National War Memorial","Kartavya Path"],transport:["Metro: Central Secretariat","Cabs","Autos"]},
+"ina market":{name:"INA Market",aliases:["ina market","ina","ina colony","ina delhi"],areaType:"Food & Wholesale Market",nearestMetro:"INA",popularFor:"Fresh Produce, Meat, Grocery",bestTime:"Morning",riskLevel:"low",riskNote:"Safe food market",hotspots:["INA Fresh Market","Dilli Haat adjacent"],transport:["Metro: INA (Yellow+Pink)","Autos"]},
+"ito":{name:"ITO",aliases:["ito","income tax office","ito delhi"],areaType:"Government & Commercial",nearestMetro:"ITO",popularFor:"Government Offices, Press Area",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe office area",hotspots:["Income Tax Office","Delhi HC","Bahadur Shah Zafar Marg"],transport:["Metro: ITO (Violet)","Autos"]},
+"jama masjid":{name:"Jama Masjid",aliases:["jama masjid","jama","jami masjid","jama mosque"],areaType:"Heritage & Religious",nearestMetro:"Jama Masjid",popularFor:"Mosque, Street Food, Old Delhi Heritage",bestTime:"Morning & Evening (not prayer times)",riskLevel:"high",riskNote:"Very crowded; pickpockets active, overpriced food outside, unofficial guides",hotspots:["Jama Masjid Mosque","Karim's Restaurant","Meena Bazaar"],transport:["Metro: Jama Masjid (Violet)","Cycle Rickshaws"]},
+"janakpuri":{name:"Janakpuri",aliases:["janakpuri","janakpuri west","janakpuri east","jpuri","janakpuri delhi"],areaType:"Residential & Commercial",nearestMetro:"Janakpuri West",popularFor:"District Centre, Shopping",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["District Centre Janakpuri","Janakpuri West Market"],transport:["Metro: Janakpuri West (Blue)","Autos"]},
+"janpath":{name:"Janpath Market",aliases:["janpath","janpath market","janpath delhi"],areaType:"Street Shopping Market",nearestMetro:"Rajiv Chowk",popularFor:"Handicrafts, Clothes, Souvenirs",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Bargaining mandatory; vendors overcharge by 200–400%",hotspots:["Janpath Street Market","Tibetan Market","Central Cottage Industries"],transport:["Metro: Rajiv Chowk","Walk from CP"]},
+"jnu":{name:"JNU",aliases:["jnu","jawaharlal nehru university","jnu campus","jnuit"],areaType:"University Campus",nearestMetro:"Vasant Vihar (nearest)",popularFor:"University, Canteen Culture",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe campus",hotspots:["JNU Library","Ganga Dhaba","Sabarmati Dhaba"],transport:["Metro: Vasant Vihar","Autos"]},
+"karol bagh":{name:"Karol Bagh",aliases:["karol bagh","kb","carol bagh","karolbagh","karol"],areaType:"Shopping & Residential",nearestMetro:"Karol Bagh",popularFor:"Electronics, Clothes, Street Food, Gaffar Market",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Watch for duplicate electronics & fake branded goods; negotiate firmly",hotspots:["Gaffar Market","Ajmal Khan Road","Tank Road"],transport:["Metro: Karol Bagh (Blue)","Autos","Buses"]},
+"kashmere gate":{name:"Kashmere Gate",aliases:["kashmere gate","kashmir gate","isbt kashmere gate","kashmiri gate"],areaType:"Transit Hub & Heritage",nearestMetro:"Kashmere Gate",popularFor:"ISBT, Historical Gate, Electronics",bestTime:"Morning",riskLevel:"high",riskNote:"Busy transit — pickpockets, touts & overcharging common near ISBT",hotspots:["Kashmere Gate ISBT","Electronics Market"],transport:["Metro: Kashmere Gate (Yellow+Red+Violet)","ISBT Buses"]},
+"khan market":{name:"Khan Market",aliases:["khan market","khan","khanmarket","khan mkt"],areaType:"Upscale Shopping & Dining",nearestMetro:"Khan Market",popularFor:"Bookshops, Cafes, Fine Dining, Boutiques",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safest market in Delhi",hotspots:["Bahri Sons Bookshop","The Big Chill","Cafe Lota"],transport:["Metro: Khan Market (Violet)","Cabs"]},
+"kalkaji":{name:"Kalkaji",aliases:["kalkaji","kalkaji mandir","kalkaji delhi"],areaType:"Residential & Religious",nearestMetro:"Kalkaji Mandir",popularFor:"Kali Temple, Residential",bestTime:"Morning",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Kalkaji Mandir","Nehru Place nearby"],transport:["Metro: Kalkaji Mandir (Violet)","Autos"]},
+"kamla nagar":{name:"Kamla Nagar",aliases:["kamla nagar","kamla","kamla market"],areaType:"Student Market & Residential",nearestMetro:"Vishwavidyalaya",popularFor:"Student Shopping, Budget Food",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe student area",hotspots:["Kamla Nagar Market","DU North Campus"],transport:["Metro: Vishwavidyalaya (Yellow)","Autos","Cycle Rickshaws"]},
+"kirti nagar":{name:"Kirti Nagar",aliases:["kirti nagar","kirti","furniture market","kirti nagar furniture"],areaType:"Furniture Market & Residential",nearestMetro:"Kirti Nagar",popularFor:"Furniture, Home Decor, Wholesale",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe; verify quality before buying",hotspots:["Kirti Nagar Furniture Market"],transport:["Metro: Kirti Nagar (Green)","Autos"]},
+"lajpat nagar":{name:"Lajpat Nagar",aliases:["lajpat nagar","lajpat","ln","lajpat market","lajpatnagar"],areaType:"Market & Residential",nearestMetro:"Lajpat Nagar",popularFor:"Clothes, Fabrics, Street Food, Central Market",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Generally safe; standard market precautions",hotspots:["Lajpat Nagar Central Market","South Ex nearby"],transport:["Metro: Lajpat Nagar (Pink)","Autos"]},
+"lodi garden":{name:"Lodi Garden",aliases:["lodi garden","lodhi garden","lodi colony","lodhi colony","lodi","lodhi"],areaType:"Heritage Garden & Residential",nearestMetro:"Jor Bagh",popularFor:"Heritage Tombs, Morning Walk, Photography",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Very safe heritage area",hotspots:["Lodi Garden","Sheesh Gumbad","IIC"],transport:["Metro: Jor Bagh (Yellow)","Cabs"]},
+"lodhi art district":{name:"Lodhi Art District",aliases:["lodhi art","lodhi art district","art district","street art delhi"],areaType:"Street Art & Creative Hub",nearestMetro:"Jor Bagh",popularFor:"India's First Street Art District, Photography",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Very safe creative neighbourhood",hotspots:["Lodhi Art Murals","The Piano Man","Big Fat Sandwich"],transport:["Metro: Jor Bagh","Cabs"]},
+"majnu ka tila":{name:"Majnu Ka Tila",aliases:["majnu ka tila","mkt","tibetan colony","majnu ka tilla","tibetan camp"],areaType:"Tibetan Colony & Cultural",nearestMetro:"Vidhan Sabha",popularFor:"Tibetan Food, Budget Stays, Culture",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe; some budget hotels sub-standard",hotspots:["Tibetan Market","Monasteries","Momos Stalls"],transport:["Metro: Vidhan Sabha (Red)","Autos"]},
+"mandi house":{name:"Mandi House",aliases:["mandi house","mandih house"],areaType:"Cultural & Media Hub",nearestMetro:"Mandi House",popularFor:"Theatres, Doordarshan, Art Galleries",bestTime:"Evening",riskLevel:"low",riskNote:"Safe cultural area",hotspots:["Kamani Auditorium","Shri Ram Centre","NSD"],transport:["Metro: Mandi House (Blue+Violet)","Autos"]},
+"mayur vihar":{name:"Mayur Vihar",aliases:["mayur vihar","mv","mayur vihar phase 1","mayur vihar 1","mvp1"],areaType:"Residential",nearestMetro:"Mayur Vihar Phase 1",popularFor:"Residential, Local Markets",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Mayur Vihar Market","Akshardham nearby"],transport:["Metro: Mayur Vihar Ph-1 (Blue)","Autos"]},
+"mehrauli":{name:"Mehrauli",aliases:["mehrauli","mehrauli village"],areaType:"Heritage Village & Market",nearestMetro:"Qutub Minar",popularFor:"Qutub Minar, Heritage Walks",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Crowded tourist area; overpriced guides & autos",hotspots:["Qutub Minar","Mehrauli Archaeological Park"],transport:["Metro: Qutub Minar (Yellow)","Autos"]},
+"model town":{name:"Model Town",aliases:["model town","model town delhi","modeltown"],areaType:"Residential & Market",nearestMetro:"Model Town",popularFor:"Residential, Local Market",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe area",hotspots:["Model Town Market"],transport:["Metro: Model Town (Yellow)","Autos"]},
+"munirka":{name:"Munirka",aliases:["munirka"],areaType:"Residential & Student Hub",nearestMetro:"RK Puram",popularFor:"JNU nearby, Affordable Food",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe student area",hotspots:["Munirka Market","JNU Main Gate"],transport:["Metro: RK Puram (Pink)","Autos"]},
+"nehru place":{name:"Nehru Place",aliases:["nehru place","np","nehru plaza","nehru plz"],areaType:"IT & Electronics Hub",nearestMetro:"Nehru Place",popularFor:"Computer Hardware, Software, IT Goods",bestTime:"Morning & Afternoon",riskLevel:"high",riskNote:"Pirated software, fake products & overcharging very common; verify invoices",hotspots:["Nehru Place Complex","Ansal Plaza","Outer Circle"],transport:["Metro: Nehru Place (Violet)","Autos"]},
+"new delhi station":{name:"New Delhi Railway Station",aliases:["new delhi","ndls","new delhi station","new delhi railway station","delhi railway","ndls station","new delhi rly"],areaType:"Railway & Transit",nearestMetro:"New Delhi",popularFor:"Major Railway Terminal",bestTime:"Morning",riskLevel:"high",riskNote:"Major scam hotspot — touts, fake booking agents, unofficial porters everywhere",hotspots:["Paharganj Side","Ajmeri Gate Side","Prepaid Counter"],transport:["Metro: New Delhi (Yellow+Airport Express)","Buses"]},
+"nizamuddin":{name:"Nizamuddin",aliases:["nizamuddin","hazrat nizamuddin","nzm","nizamuddin dargah","nizamuddin station","nizam"],areaType:"Heritage & Dargah",nearestMetro:"Hazrat Nizamuddin",popularFor:"Dargah, Qawwali, Railway Station",bestTime:"Evening (Qawwali nights)",riskLevel:"moderate",riskNote:"Crowded dargah — pickpockets & overpriced offerings near shrine",hotspots:["Hazrat Nizamuddin Dargah","Humayun's Tomb nearby"],transport:["Metro: Hazrat Nizamuddin (Pink)","Autos"]},
+"noida city centre":{name:"Noida City Centre",aliases:["noida city centre","ncc","city centre noida","noida cc"],areaType:"Commercial & Residential",nearestMetro:"Noida City Centre",popularFor:"DLF Mall of India, Offices, Restaurants",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe commercial area",hotspots:["DLF Mall of India","Logix City Centre"],transport:["Metro: Noida City Centre (Blue)","Autos"]},
+"noida sector 18":{name:"Noida Sector 18",aliases:["noida sector 18","sector 18","sec 18 noida","noida 18","sec 18"],areaType:"Commercial & Shopping",nearestMetro:"Noida Sector 18",popularFor:"Malls, Shopping, Restaurants",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe commercial area",hotspots:["Atta Market","Sector 18 Market"],transport:["Metro: Noida Sector 18 (Blue)","Autos"]},
+"north campus":{name:"North Campus (DU)",aliases:["north campus","du north campus","north campus du","delhi university","du","delhi uni"],areaType:"University & Student Hub",nearestMetro:"Vishwavidyalaya",popularFor:"Delhi University, Student Life, Hudson Lane",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe student area",hotspots:["Hudson Lane","Kamla Nagar","North Campus Colleges"],transport:["Metro: Vishwavidyalaya (Yellow)","Autos"]},
+"okhla":{name:"Okhla",aliases:["okhla","okhla industrial","okhla delhi"],areaType:"Industrial & Residential",nearestMetro:"Okhla",popularFor:"Industrial Area, Jamia Millia",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe during business hours",hotspots:["Okhla Industrial Estate","Batla House","Jamia Millia"],transport:["Metro: Okhla (Violet)","Buses"]},
+"old delhi":{name:"Old Delhi",aliases:["old delhi","old dilli","purani dilli","dilli 6","delhi 6","old del"],areaType:"Heritage & Market",nearestMetro:"Chandni Chowk / Chawri Bazaar",popularFor:"Street Food, Spices, Heritage, Weddings",bestTime:"Morning",riskLevel:"high",riskNote:"Extremely crowded; pickpocketing, overcharging & scams very common",hotspots:["Chandni Chowk","Jama Masjid","Red Fort","Khari Baoli"],transport:["Metro: Chandni Chowk (Yellow)","Cycle Rickshaw"]},
+"paharganj":{name:"Paharganj",aliases:["paharganj","pahargant","main bazaar","pahar ganj","pharganj","phargunge"],areaType:"Budget Tourism Hub",nearestMetro:"New Delhi",popularFor:"Budget Hotels, Backpacker Market",bestTime:"Evening",riskLevel:"high",riskNote:"Highest scam concentration in Delhi — touts, drug pushers, gem scams, fake police",hotspots:["Main Bazaar","Chuna Mandi","Arakashan Road"],transport:["Metro: New Delhi (Yellow)","Walk to Railway Stn"]},
+"pitampura":{name:"Pitampura",aliases:["pitampura","pitampur"],areaType:"Residential & Media",nearestMetro:"Pitampura",popularFor:"TV Studios, Doordarshan Tower",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Pitampura TV Tower","Netaji Subhash Place"],transport:["Metro: Pitampura (Red)","Autos"]},
+"pragati maidan":{name:"Pragati Maidan / Bharat Mandapam",aliases:["pragati maidan","bharat mandapam","iitf","trade fair","pm"],areaType:"Exhibition & Convention Center",nearestMetro:"Pragati Maidan",popularFor:"IITF Trade Fair, G20, Exhibitions",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Secure during events; official tickets only",hotspots:["Bharat Mandapam","Yashobhoomi","Purana Qila adjacent"],transport:["Metro: Pragati Maidan (Blue)","Autos"]},
+"qutub minar":{name:"Qutub Minar",aliases:["qutub minar","qutab minar","kutub minar","qutab","qutub","kutab minar"],areaType:"UNESCO Heritage Monument",nearestMetro:"Qutub Minar",popularFor:"UNESCO World Heritage, Photography, History",bestTime:"Morning",riskLevel:"moderate",riskNote:"Overpriced guides, souvenir touts, fake tickets outside — buy from official counter only",hotspots:["Qutub Minar Tower","Iron Pillar","Alai Darwaza"],transport:["Metro: Qutub Minar (Yellow)","Autos"]},
+"rajouri garden":{name:"Rajouri Garden",aliases:["rajouri garden","rg","rajori garden","rajouri"],areaType:"Shopping & Residential",nearestMetro:"Rajouri Garden",popularFor:"Shopping, Restaurants, Nightlife",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe area",hotspots:["Rajouri Garden Main Market","TDI Mall"],transport:["Metro: Rajouri Garden (Blue+Pink)","Autos"]},
+"red fort":{name:"Red Fort",aliases:["red fort","lal qila","lal kila","redfort"],areaType:"UNESCO Heritage Monument",nearestMetro:"Chandni Chowk / Lal Quila",popularFor:"UNESCO Site, Independence Day, History",bestTime:"Morning",riskLevel:"high",riskNote:"Fake ticket sellers, overpriced tours, pickpockets very active near main gate",hotspots:["Red Fort Main Gate","Diwan-i-Aam","Sound & Light Show"],transport:["Metro: Chandni Chowk / Lal Quila (Violet)","Autos"]},
+"rohini":{name:"Rohini",aliases:["rohini","rohini east","rohini west","rohini sec","rohini sector"],areaType:"Planned Residential Sub-City",nearestMetro:"Rohini East / West",popularFor:"Malls, Residential, Gardens",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe planned area",hotspots:["City Square Mall","Rohini Sec 18 Market"],transport:["Metro: Rohini East/West (Red)","Autos"]},
+"sadar bazaar":{name:"Sadar Bazaar",aliases:["sadar bazaar","sadar bazar","sadar","sadar market"],areaType:"Wholesale Market",nearestMetro:"Sadar Bazaar",popularFor:"Wholesale Goods, Household Items",bestTime:"Morning & Afternoon",riskLevel:"moderate",riskNote:"Crowded wholesale area; fake goods & pickpockets",hotspots:["Sadar Bazaar Main Market","Nai Sarak","Katra Neel"],transport:["Metro: Sadar Bazaar (Green)","Cycle Rickshaws"]},
+"safdarjung":{name:"Safdarjung",aliases:["safdarjung","safdarjung enclave","safdarjung tomb","safdar jung"],areaType:"Hospital & Residential",nearestMetro:"AIIMS",popularFor:"Safdarjung Hospital, Residential, Tomb",bestTime:"Morning",riskLevel:"low",riskNote:"Safe area",hotspots:["Safdarjung Hospital","Safdarjung Tomb","Safdarjung Airport"],transport:["Metro: AIIMS (Yellow)","Autos"]},
+"saket":{name:"Saket",aliases:["saket","saket mall","select citywalk","saket delhi"],areaType:"Mall & Residential",nearestMetro:"Saket",popularFor:"Select Citywalk, DLF Place, Restaurants, PVR",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Very safe mall complex",hotspots:["Select Citywalk","DLF Place Saket","PVR Saket","Garden of Five Senses"],transport:["Metro: Saket (Yellow)","Cabs"]},
+"shalimar bagh":{name:"Shalimar Bagh",aliases:["shalimar bagh","shalimar","shalimarbagh"],areaType:"Residential",nearestMetro:"Shalimar Bagh",popularFor:"Residential, Local Markets",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Shalimar Bagh Market"],transport:["Metro: Shalimar Bagh (Pink)","Autos"]},
+"south campus":{name:"South Campus (DU)",aliases:["south campus","du south campus","south campus du","dsc","south du"],areaType:"University & Residential",nearestMetro:"Durgabai Deshmukh South Campus",popularFor:"Delhi University South Campus, Cafes",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe university area",hotspots:["South Campus Colleges","Satya Niketan Market"],transport:["Metro: Durgabai Deshmukh South Campus (Pink)","Autos"]},
+"south extension":{name:"South Extension",aliases:["south extension","south ex","se","south ex part 1","south ex part 2","south extension market"],areaType:"Upscale Shopping & Residential",nearestMetro:"South Extension",popularFor:"Branded Shops, Cafes, Restaurants",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Generally safe, well-policed",hotspots:["South Ex Part I & II","Ring Road"],transport:["Metro: South Extension (Pink)","Autos"]},
+"tilak nagar":{name:"Tilak Nagar",aliases:["tilak nagar","tilak","tlk","tilak nagar west"],areaType:"Residential & Market",nearestMetro:"Tilak Nagar",popularFor:"West Delhi Market, Residential",bestTime:"Morning & Afternoon",riskLevel:"low",riskNote:"Safe area",hotspots:["Tilak Nagar Market"],transport:["Metro: Tilak Nagar (Blue)","Autos"]},
+"tughlaqabad":{name:"Tughlaqabad",aliases:["tughlaqabad","tughlakabd","tughlakabad"],areaType:"Heritage Fort & Residential",nearestMetro:"Tughlaqabad",popularFor:"14th Century Fort, Photography",bestTime:"Morning",riskLevel:"low",riskNote:"Safe; auto drivers may overcharge",hotspots:["Tughlaqabad Fort","Ghiyasuddin's Tomb"],transport:["Metro: Tughlaqabad (Violet)","Autos"]},
+"uttam nagar":{name:"Uttam Nagar",aliases:["uttam nagar","uttam","uttam nagar east","uttam nagar west","unw"],areaType:"Residential & Commercial",nearestMetro:"Uttam Nagar West",popularFor:"Residential West Delhi",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Uttam Nagar Market"],transport:["Metro: Uttam Nagar West (Blue)","Autos"]},
+"vaishali":{name:"Vaishali",aliases:["vaishali","vaishali ghaziabad","vaishali ghz"],areaType:"NCR Residential & Commercial",nearestMetro:"Vaishali",popularFor:"GIP Mall, Residential NCR",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Safe NCR area",hotspots:["GIP Mall","Vaishali Market"],transport:["Metro: Vaishali (Blue terminus)","Autos"]},
+"vasant kunj":{name:"Vasant Kunj",aliases:["vasant kunj","vk","vasant kunj mall","vasantkunj"],areaType:"Upscale Residential & Mall",nearestMetro:"Vasant Vihar (nearest)",popularFor:"Ambience Mall, DLF Promenade",bestTime:"Afternoon & Evening",riskLevel:"low",riskNote:"Very safe upscale area",hotspots:["Ambience Mall","DLF Promenade"],transport:["Metro: Vasant Vihar","Cabs"]},
+"vasant vihar":{name:"Vasant Vihar",aliases:["vasant vihar","vv","vasantvihar"],areaType:"Upscale Residential & Diplomatic",nearestMetro:"Vasant Vihar (Pink)",popularFor:"Embassies, Upscale Restaurants",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Very safe diplomatic area",hotspots:["Vasant Vihar Market","US Embassy area"],transport:["Metro: Vasant Vihar (Pink)","Cabs"]},
+"vikaspuri":{name:"Vikaspuri",aliases:["vikaspuri","vikas puri","vikashpuri"],areaType:"Residential",nearestMetro:"Vikaspuri",popularFor:"Residential, Local Markets",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe residential area",hotspots:["Vikaspuri Market"],transport:["Metro: Vikaspuri (Blue)","Autos"]},
+"yamuna bank":{name:"Yamuna Bank",aliases:["yamuna bank","yamuna","yamunabank"],areaType:"Interchange Station & Residential",nearestMetro:"Yamuna Bank",popularFor:"Blue & Pink Line Interchange",bestTime:"Morning & Evening",riskLevel:"low",riskNote:"Safe metro interchange",hotspots:["Yamuna River View","Akshardham nearby"],transport:["Metro: Yamuna Bank (Blue+Pink)","Autos"]},
+"zoo":{name:"Delhi Zoo",aliases:["zoo","delhi zoo","national zoological park","delhizoo"],areaType:"Zoo & Nature",nearestMetro:"Pragati Maidan",popularFor:"National Zoological Park, Family Visit",bestTime:"Morning",riskLevel:"low",riskNote:"Safe; buy tickets only from official counter",hotspots:["National Zoological Park","Purana Qila adjacent"],transport:["Metro: Pragati Maidan","Autos"]},
+},
+
+resolveLocation(q){
+  const query=q.toLowerCase().trim();
+  if(this.locations[query]) return this.locations[query];
+  for(const loc of Object.values(this.locations)){
+    if(loc.aliases&&loc.aliases.some(a=>a===query||a.includes(query)||query.includes(a))) return loc;
+  }
+  const key=Object.keys(this.locations).find(k=>k.includes(query)||query.includes(k));
+  return key?this.locations[key]:null;
+},
+
+fares: {
+        "airport|connaught place": {min:350,max:500,note:"Airport Express + Metro ₹100 recommended"},
+        "airport|paharganj": {min:350,max:500,note:"Airport Express to New Delhi Metro ₹100"},
+        "airport|karol bagh": {min:300,max:450,note:"Airport Express + Blue Line cheaper"},
+        "airport|saket": {min:200,max:300,note:"Closest major area from airport"},
+        "airport|hauz khas": {min:250,max:380,note:"30-40 min by cab"},
+        "airport|dwarka": {min:150,max:250,note:"Closest residential area; Metro much cheaper"},
+        "airport|vasant kunj": {min:180,max:280,note:"Very close"},
+        "airport|rohini": {min:500,max:700,note:"Very long — use Metro"},
+        "connaught place|paharganj": {min:60,max:120,note:"Walk 12 min or Metro 1 stop"},
+        "connaught place|karol bagh": {min:80,max:150,note:"Blue Line Metro faster"},
+        "connaught place|saket": {min:200,max:300,note:"Yellow Line recommended"},
+        "connaught place|akshardham": {min:180,max:280,note:"Blue Line Metro"},
+        "rohini|pitampura": {min:80,max:150,note:"Red Line 2-3 stops"},
+        "rohini|connaught place": {min:280,max:420,note:"Red+Yellow Line Metro"}
+        // Note: I have included the most critical routes above. 
+        // You can keep adding more "from|to" keys here from your list.
+    },
+
+    // HELPER FUNCTIONS
+    resolveLocation(q) {
+        const query = q.toLowerCase().trim();
+        if (this.locations[query]) return this.locations[query];
+        for (const loc of Object.values(this.locations)) {
+            if (loc.name.toLowerCase().includes(query)) return loc;
+        }
+        return null;
+    }
+};
+
+// 2. PAGE NAVIGATION
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+    if(document.getElementById('nav-' + pageId)) document.getElementById('nav-' + pageId).classList.add('active');
+    window.scrollTo(0,0);
+}
+
+// 3. FARE CHECKER LOGIC (FULL & WIDGET)
+function fullCheckPrice() {
+    const from = document.getElementById('p-from').value.toLowerCase().trim();
+    const to = document.getElementById('p-to').value.toLowerCase().trim();
+    const resultDiv = document.getElementById('price-full-result');
+    
+    // Create key to search the DB
+    const key = `${from}|${to}`;
+    const reverseKey = `${to}|${from}`; // Checks if route is listed backward
+    const fare = DB.fares[key] || DB.fares[reverseKey];
+
+    if (fare) {
+        resultDiv.innerHTML = `
+            <div class="main-price">₹${fare.min} - ₹${fare.max}</div>
+            <div class="sub">${fare.note}</div>
+            <div class="tip-box">
+                💡 <strong>Smart Tip:</strong> Always ask the driver to use the meter or book via Uber/Ola to ensure these rates.
+            </div>
+        `;
+        resultDiv.classList.add('show');
+    } else {
+        resultDiv.innerHTML = `
+            <div class="sub">Route not in database.</div>
+            <div class="main-price">Est. ₹15/km</div>
+            <div class="tip-box" style="background:#fdecea; color:var(--red);">
+                ⚠️ <strong>Warning:</strong> Ensure the driver uses the meter.
+            </div>
+        `;
+        resultDiv.classList.add('show');
+    }
+}
+
+// 4. INCIDENT SUBMISSION (MOCK)
+function submitReport() {
+    const type = document.getElementById('r-type').value;
+    const loc = document.getElementById('r-loc').value;
+    if(!type || !loc) return alert("Please fill in the incident type and location.");
+    
+    document.getElementById('report-success').classList.add('show');
+    setTimeout(() => {
+        document.getElementById('report-success').classList.remove('show');
+    }, 3000);
+}
+
+// 5. AUTH MODAL
+function openAuth() { document.getElementById('auth-modal').classList.add('show'); }
+function closeAuth() { document.getElementById('auth-modal').classList.remove('show'); }
+</script>
